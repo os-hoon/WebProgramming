@@ -3,7 +3,7 @@ document.getElementById('registerForm').addEventListener('submit', function(even
     const username = document.getElementById('registerUsername').value;
     const password = document.getElementById('registerPassword').value;
 
-    fetch('/register', {
+    fetch('https://port-0-diary-lxklaj2915d83db7.sel5.cloudtype.app/register', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -30,7 +30,7 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
     const username = document.getElementById('loginUsername').value;
     const password = document.getElementById('loginPassword').value;
 
-    fetch('/login', {
+    fetch('https://port-0-diary-lxklaj2915d83db7.sel5.cloudtype.app/login', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -46,17 +46,15 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
     .then(data => {
         localStorage.setItem('token', data.token);
         alert('로그인 성공');
-        // 핀 이미지와 전구 이미지 사라지게 하기
         document.querySelectorAll('.pin-image').forEach(element => {
             element.classList.add('fade-out');
         });
-        // 사라지는 효과가 완료된 후 페이지 전환 효과 적용
         setTimeout(() => {
-            document.body.classList.add('page-transition'); // 페이지 전환 효과 추가
+            document.body.classList.add('page-transition'); 
             setTimeout(() => {
                 window.location.href = '/schedules.html';
-            }, 1000); // 1초 후 페이지 이동
-        }, 1000); // 1초 후 사라지는 효과 완료
+            }, 1000); 
+        }, 1000); 
     })
     .catch(error => {
         alert(error.message);

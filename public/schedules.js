@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (id) {
             scheduleData.id = id;
-            fetch('/schedules', {
+            fetch('https://port-0-diary-lxklaj2915d83db7.sel5.cloudtype.app/schedules', {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.getElementById('scheduleId').value = '';
             });
         } else {
-            fetch('/schedules', {
+            fetch('https://port-0-diary-lxklaj2915d83db7.sel5.cloudtype.app/schedules', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const decodedToken = JSON.parse(atob(base64));
         const memberId = decodedToken.id;
 
-        fetch('/member', {
+        fetch('https://port-0-diary-lxklaj2915d83db7.sel5.cloudtype.app/member', {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
@@ -124,7 +124,7 @@ function initializeCalendar() {
             const decodedToken = JSON.parse(atob(base64));
             const memberId = decodedToken.id;
 
-            fetch(`/schedules?member_id=${memberId}`, {
+            fetch(`https://port-0-diary-lxklaj2915d83db7.sel5.cloudtype.app/schedules?member_id=${memberId}`, {
                 method: 'GET',
                 headers: {
                     'Authorization': token
@@ -172,7 +172,7 @@ function initializeCalendar() {
 
                 const scheduleData = { member_id: memberId, title, description, start_date: startDate, end_date: endDate };
 
-                fetch('/schedules', {
+                fetch('https://port-0-diary-lxklaj2915d83db7.sel5.cloudtype.app/schedules', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -192,7 +192,7 @@ function initializeCalendar() {
                 const token = localStorage.getItem('token');
                 if (!token) return;
 
-                fetch('/schedules', {
+                fetch('https://port-0-diary-lxklaj2915d83db7.sel5.cloudtype.app/schedules', {
                     method: 'DELETE',
                     headers: {
                         'Content-Type': 'application/json',
@@ -213,7 +213,7 @@ function initializeCalendar() {
 }
 
 function fetchUserInfo(token) {
-    fetch('/userinfo', {
+    fetch('https://port-0-diary-lxklaj2915d83db7.sel5.cloudtype.app/userinfo', {
         method: 'GET',
         headers: {
             'Authorization': token
@@ -237,7 +237,7 @@ function loadSchedules(filter) {
     const decodedToken = JSON.parse(atob(base64));
     const memberId = decodedToken.id;
 
-    let url = `/schedules?member_id=${memberId}`;
+    let url = `https://port-0-diary-lxklaj2915d83db7.sel5.cloudtype.app/schedules?member_id=${memberId}`;
     if (filter) {
         url += `&filter=${filter}`;
     }
@@ -306,7 +306,7 @@ function createDeleteButton(scheduleId) {
         const token = localStorage.getItem('token');
         if (!token) return;
 
-        fetch('/schedules', {
+        fetch('https://port-0-diary-lxklaj2915d83db7.sel5.cloudtype.app/schedules', {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
@@ -329,4 +329,3 @@ function getColor(id) {
     const colorIndex = numericId % colors.length;  
     return colors[colorIndex];
 }
-
