@@ -4,20 +4,11 @@ const mysql = require('mysql2');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const path = require('path');
-const cors = require('cors'); // CORS 미들웨어 추가
 require('dotenv').config(); 
 
 const app = express();
 const port = process.env.PORT || 3000;
 
-// Netlify 프론트엔드 도메인만 허용하도록 CORS 설정
-const corsOptions = {
-    origin: 'https://euphonious-belekoy-580a6f.netlify.app', // Netlify 프론트엔드 배포 주소
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    allowedHeaders: ['Content-Type', 'Authorization']
-};
-
-app.use(cors(corsOptions)); // 세부적인 CORS 설정 적용
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
