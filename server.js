@@ -10,7 +10,14 @@ require('dotenv').config();
 const app = express();
 const port = process.env.PORT || 3000;
 
-app.use(cors()); // 모든 도메인에서의 요청을 허용하도록 설정
+// Netlify 프론트엔드 도메인만 허용하도록 CORS 설정
+const corsOptions = {
+    origin: 'https://euphonious-belekoy-580a6f.netlify.app', // Netlify 프론트엔드 배포 주소
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+};
+
+app.use(cors(corsOptions)); // 세부적인 CORS 설정 적용
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -22,7 +29,7 @@ const db = mysql.createConnection({
     port: process.env.DB_PORT,
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME
+    database: process.env.DB_NAME,
 });
 
 db.connect(err => {
