@@ -4,11 +4,13 @@ const mysql = require('mysql2');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const path = require('path');
+const cors = require('cors'); // CORS 미들웨어 추가
 require('dotenv').config(); 
 
 const app = express();
 const port = process.env.PORT || 3000;
 
+app.use(cors()); // 모든 도메인에서의 요청을 허용하도록 설정
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -20,7 +22,7 @@ const db = mysql.createConnection({
     port: process.env.DB_PORT,
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME,
+    database: process.env.DB_NAME
 });
 
 db.connect(err => {
